@@ -1,0 +1,27 @@
+.current {
+  align-content: center;
+  margin-top: 50px;
+}
+
+.row {
+  text-align: center;
+  font-size: large;
+}
+
+.city {
+  font-size: 35px;
+  text-decoration-line: underline;
+}
+
+.current-temp {
+  font-size: 25px;
+}
+
+.current-emoji {
+  font-size: 50px;
+}
+
+.current-date {
+  font-size: 15px;
+  line-height: 7px;
+}
