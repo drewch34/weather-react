@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
+import "./Search.css";
 
 export default function Search() {
   const [searched, setValue] = useState("");
@@ -21,7 +22,7 @@ export default function Search() {
 
     return (
     <div className="Search">
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-light">
         <form id="search-city-form" className="form-inline" onSubmit={handleSubmit}>
           <input
             id="search-city"
