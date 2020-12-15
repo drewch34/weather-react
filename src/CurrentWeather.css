@@ -25,3 +25,7 @@
   font-size: 15px;
   line-height: 7px;
 }
+
+.loader {
+  margin: 60px auto;
+}
