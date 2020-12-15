@@ -1,7 +1,16 @@
 .future-emoji {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 td {
   vertical-align: center;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
+}
+
+table {
+  margin-top: 50px;
 }
