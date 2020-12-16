@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loader from 'react-loader-spinner'
 
-export default function CurrentWeather(props) {
+export default function LocationWeather() {
 
   const [weatherData, setWeatherData] = useState( {ready: false});
 
@@ -24,9 +24,8 @@ export default function CurrentWeather(props) {
 
   let key = `f42932205cbcb577e1d9c675e3aae5ef`;
 
-  if (props.searchVal && weatherData.ready) {
+  if (weatherData.ready) {
     let imgURL = `http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
-
     return (
       <div className="col current border-right CurrentCity">
         <div id="curr-city" className="row city justify-content-center">
@@ -73,11 +72,17 @@ export default function CurrentWeather(props) {
           <p id="curr-sunset">The sunset in your time is 17:29</p> */}
         {/* </div> */}
       </div>
-    );
-
+    )
   } else {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.searchVal}&appid=${key}&units=metric`;
-    axios.get(url).then(displayInfo);
+    function getPosition(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      let place = `lat=${lat}&lon=${lon}`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?${place}&units=metric&appid=${key}`;
+
+      axios.get(url).then(displayInfo);
+    }
+    navigator.geolocation.getCurrentPosition(getPosition);
 
     return (
       <div className="loader">
@@ -86,11 +91,9 @@ export default function CurrentWeather(props) {
          color="black"
          height={100}
          width={100}
-         timeout={5000}
+         timeout={5000} //3 secs
         />
       </div>
     )
   }
-
 }
-
