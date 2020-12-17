@@ -1,7 +1,8 @@
 import "./CurrentWeather.css";
 import React, { useState } from "react";
 import axios from "axios";
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner';
+
 
 export default function LocationWeather() {
 
@@ -21,67 +22,73 @@ export default function LocationWeather() {
     })
 
   }
-
+  let lat;
+  let lon;
+  let place;
   let key = `f42932205cbcb577e1d9c675e3aae5ef`;
 
   if (weatherData.ready) {
     let imgURL = `http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
     return (
-      <div className="col current border-right CurrentCity">
-        <div id="curr-city" className="row city justify-content-center">
-          {weatherData.city}
+      <div>
+        <div className="col current border-right CurrentCity">
+          <div id="curr-city" className="row city justify-content-center">
+            {weatherData.city}
+          </div>
+          {/* <div id="curr-date" className="row current-date justify-content-center">
+            Saturday, November 21
+          </div>
+          <div
+            id="curr-state-country"
+            className="row state-country justify-content-center"
+          >
+            USA
+          </div> */}
+          <div className="row current-emoji justify-content-center">
+            <img src={imgURL} alt="Pic of weather"></img>
+          </div>
+          <div className="row current-temp justify-content-center">
+            <p id="curr-temp" className="temp">
+              The temperature is currently {weatherData.temp}°C
+            </p>
+          </div>
+          <div
+            id="current-des"
+            className="row current-descript justify-content-center"
+          >
+            Description: {weatherData.desc}
+          </div>
+          <div
+            id="current-windspeed"
+            className="row current-windspeed justify-content-center"
+          >
+            Wind speed: {weatherData.wind}km/hr
+          </div>
+          <div className="row current-feels justify-content-center">
+            <p id="curr-feels-like-temp" className="temp">
+              It feels like {weatherData.feelsLike}°C
+            </p>
+          </div>
+          {/* <div className="row sunrise justify-content-center">
+            <p id="curr-sunrise">The sunrise in your time is 07:30</p>
+          </div>
+          <div className="row sunset justify-content-center">
+            <p id="curr-sunset">The sunset in your time is 17:29</p> */}
+          {/* </div> */}
         </div>
-        {/* <div id="curr-date" className="row current-date justify-content-center">
-          Saturday, November 21
-        </div>
-        <div
-          id="curr-state-country"
-          className="row state-country justify-content-center"
-        >
-          USA
-        </div> */}
-        <div className="row current-emoji justify-content-center">
-          <img src={imgURL} alt="Pic of weather"></img>
-        </div>
-        <div className="row current-temp justify-content-center">
-          <p id="curr-temp" className="temp">
-            The temperature is currently {weatherData.temp}°C
-          </p>
-        </div>
-        <div
-          id="current-des"
-          className="row current-descript justify-content-center"
-        >
-          Description: {weatherData.desc}
-        </div>
-        <div
-          id="current-windspeed"
-          className="row current-windspeed justify-content-center"
-        >
-          Wind speed: {weatherData.wind}km/hr
-        </div>
-        <div className="row current-feels justify-content-center">
-          <p id="curr-feels-like-temp" className="temp">
-            It feels like {weatherData.feelsLike}°C
-          </p>
-        </div>
-        {/* <div className="row sunrise justify-content-center">
-          <p id="curr-sunrise">The sunrise in your time is 07:30</p>
-        </div>
-        <div className="row sunset justify-content-center">
-          <p id="curr-sunset">The sunset in your time is 17:29</p> */}
-        {/* </div> */}
+
       </div>
     )
   } else {
     function getPosition(position) {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-      let place = `lat=${lat}&lon=${lon}`;
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+      place = `lat=${lat}&lon=${lon}`;
       let url = `https://api.openweathermap.org/data/2.5/weather?${place}&units=metric&appid=${key}`;
 
       axios.get(url).then(displayInfo);
     }
+
     navigator.geolocation.getCurrentPosition(getPosition);
 
     return (
@@ -91,7 +98,7 @@ export default function LocationWeather() {
          color="black"
          height={100}
          width={100}
-         timeout={5000} //3 secs
+         timeout={5000}
         />
       </div>
     )

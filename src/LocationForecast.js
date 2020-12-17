@@ -1,102 +1,52 @@
 import "./Forecast.css";
+import React, { useState } from "react";
+import axios from "axios";
+import Loader from 'react-loader-spinner';
+import ForecastComp from "./ForecastComp.js";
 
-export default function LocationForecast() {
-  return (
-    <div className="col future">
-      <table className="table">
-        <tbody>
-          <tr>
-            <th valign="middle" scope="row day-one" className="future-emoji">
-              Fake weekly stuff ⛅️
-            </th>
-            <td id="day-plus-one">Sunday</td>
-            <td>
-              <p id="day-one-high" className="temp">
-                22°C
-              </p>
-              <p id="day-one-low" className="temp">
-                12°C
-              </p>
-            </td>
-            <td>
-              <p>↑</p>
-              <p>↓</p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row day-two" className="future-emoji">
-              location based
-            </th>
-            <td id="day-plus-two">Monday</td>
-            <td>
-              <p id="day-two-high" className="temp">
-                23°C
-              </p>
-              <p id="day-two-low" className="temp">
-                18°C
-              </p>
-            </td>
-            <td>
-              <p>↑</p>
-              <p>↓</p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row day-three" className="future-emoji">
-              ⛅️
-            </th>
-            <td id="day-plus-three">Tuesday</td>
-            <td>
-              <p id="day-three-high" className="temp">
-                21°C
-              </p>
-              <p id="day-three-low" className="temp">
-                16°C
-              </p>
-            </td>
-            <td>
-              <p>↑</p>
-              <p>↓</p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row day-four" className="future-emoji">
-              🌦{" "}
-            </th>
-            <td id="day-plus-four">Wednesday</td>
-            <td>
-              <p id="day-four-high" className="temp">
-                23°C
-              </p>
-              <p id="day-four-low" className="temp">
-                14°C
-              </p>
-            </td>
-            <td>
-              <p>↑</p>
-              <p>↓</p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row day-five" className="future-emoji">
-              ⛅️{" "}
-            </th>
-            <td id="day-plus-five">Thursday</td>
-            <td>
-              <p id="day-five-high" className="temp">
-                24°C
-              </p>
-              <p id="day-five-low" className="temp">
-                19°C
-              </p>
-            </td>
-            <td>
-              <p>↑</p>
-              <p>↓</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+export default function LocationForecast(props) {
+  let key = `f42932205cbcb577e1d9c675e3aae5ef`;
+
+  const [weatherInfo, setWeatherInfo] = useState({ready: false});
+
+  function getInfo(response) {
+    console.log(response);
+
+    setWeatherInfo({
+      ready: true,
+      time: 'meow'
+    })
+  }
+
+  if (weatherInfo.ready) {
+    return (
+      <div className="col future">
+        <ForecastComp />
+      </div>
+    );
+
+  } else {
+    function getPosition(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      let place = `lat=${lat}&lon=${lon}`;
+      let url = `https://api.openweathermap.org/data/2.5/onecall?${place}&exclude=minutely&exclude=hourly&exclude=current&units=metric&appid=${key}`;
+
+      axios.get(url).then(getInfo);
+    }
+
+    navigator.geolocation.getCurrentPosition(getPosition);
+
+    return (
+      <div className="loader">
+        <Loader
+         type="Puff"
+         color="black"
+         height={100}
+         width={100}
+         timeout={5000}
+        />
+      </div>
+    )
+  }
 }

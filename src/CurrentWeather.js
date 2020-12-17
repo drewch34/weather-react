@@ -1,14 +1,15 @@
 import "./CurrentWeather.css";
 import React, { useState } from "react";
 import axios from "axios";
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner';
+import Forecast from "./Forecast.js";
 
 export default function CurrentWeather(props) {
 
   const [weatherData, setWeatherData] = useState( {ready: false});
 
   function displayInfo(response) {
-    // console.log(response);
+    console.log(response);
     setWeatherData ({
       ready: true,
       temp: Math.round(response.data.main.temp),
@@ -17,6 +18,9 @@ export default function CurrentWeather(props) {
       icon: response.data.weather[0].icon,
       city: response.data.name,
       feelsLike: Math.round(response.data.main.feels_like),
+      lat: response.data.coord.lat,
+      long: response.data.coord.lan,
+      place: `lat=${weatherData.lat}&lon=${weatherData.long}`
       // humid: response.data.main.humidity
     })
 
@@ -72,11 +76,13 @@ export default function CurrentWeather(props) {
         <div className="row sunset justify-content-center">
           <p id="curr-sunset">The sunset in your time is 17:29</p> */}
         {/* </div> */}
+        <Forecast place={weatherData.place}/>
       </div>
     );
 
   } else {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.searchVal}&appid=${key}&units=metric`;
+
     axios.get(url).then(displayInfo);
 
     return (

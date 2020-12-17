@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import CurrentWeather from "./CurrentWeather";
 import LocationWeather from "./LocationWeather";
-import LocationForecast from "./LocationForecast";
-import Forecast from "./Forecast";
+import LocationForecast from "./LocationForecast.js";
+// import Forecast from "./Forecast";
 import "./Search.css";
 
 export default function Search() {
@@ -57,7 +57,7 @@ export default function Search() {
         <div class="weather-section">
           <div className="row">
             <CurrentWeather searchVal={city}/>
-            <Forecast searchCity={city}/>
+            {/* <Forecast searchCity={city}/> */}
           </div>
         </div>
       </div>
