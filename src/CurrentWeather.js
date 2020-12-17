@@ -9,7 +9,7 @@ export default function CurrentWeather(props) {
   const [weatherData, setWeatherData] = useState( {ready: false});
 
   function displayInfo(response) {
-    console.log(response);
+    // console.log(response);
     setWeatherData ({
       ready: true,
       temp: Math.round(response.data.main.temp),

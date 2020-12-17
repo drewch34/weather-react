@@ -14,14 +14,18 @@ export default function Forecast(props) {
   function getInfo(response) {
     setWeatherInfo({
       ready: true,
-
+      eachDay: response.data.daily
     })
   }
 
   if (weatherInfo.ready) {
     return (
     <div className="col future">
-      <ForecastComp />
+      <ForecastComp daily={weatherInfo.eachDay[0]}/>
+      <ForecastComp daily={weatherInfo.eachDay[1]}/>
+      <ForecastComp daily={weatherInfo.eachDay[2]}/>
+      <ForecastComp daily={weatherInfo.eachDay[3]}/>
+      <ForecastComp daily={weatherInfo.eachDay[4]}/>
     </div>
     );
 

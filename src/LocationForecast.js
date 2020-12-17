@@ -10,18 +10,22 @@ export default function LocationForecast(props) {
   const [weatherInfo, setWeatherInfo] = useState({ready: false});
 
   function getInfo(response) {
-    console.log(response);
+    // console.log(response);
 
     setWeatherInfo({
       ready: true,
-      time: 'meow'
+      eachDay: response.data.daily
     })
   }
 
   if (weatherInfo.ready) {
     return (
       <div className="col future">
-        <ForecastComp />
+        <ForecastComp daily={weatherInfo.eachDay[0]}/>
+        <ForecastComp daily={weatherInfo.eachDay[1]}/>
+        <ForecastComp daily={weatherInfo.eachDay[2]}/>
+        <ForecastComp daily={weatherInfo.eachDay[3]}/>
+        <ForecastComp daily={weatherInfo.eachDay[4]}/>
       </div>
     );
 
