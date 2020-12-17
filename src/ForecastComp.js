@@ -1,5 +1,6 @@
 import React from "react";
 import "./ForecastComp.css"
+import WeatherIcon from "./Icon.js";
 
 export default function ForecastComp(props) {
   console.log(props.daily);
@@ -10,10 +11,10 @@ export default function ForecastComp(props) {
   return (
     <div className="IndividualForecastComp">
       <span>
-        <p>{props.daily.weather[0].icon}</p>
-        <p>{props.daily.dt}</p>
-        <p>High: {high}°C</p>
-        <p>Low: {low}°C</p>
+        <WeatherIcon icon={props.daily.weather[0].icon}/>
+        {props.daily.dt}
+        High: {high}°C
+        Low: {low}°C
       </span>
     </div>
   )

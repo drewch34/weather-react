@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loader from 'react-loader-spinner';
 import Forecast from "./Forecast.js";
+import WeatherIcon from "./Icon.js";
 
 export default function CurrentWeather(props) {
 
@@ -29,7 +30,6 @@ export default function CurrentWeather(props) {
   let key = `f42932205cbcb577e1d9c675e3aae5ef`;
 
   if (props.searchVal && weatherData.ready) {
-    let imgURL = `http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`;
 
     return (
       <div className="col current border-right CurrentCity">
@@ -46,7 +46,7 @@ export default function CurrentWeather(props) {
           USA
         </div> */}
         <div className="row current-emoji justify-content-center">
-          <img src={imgURL} alt="Pic of weather"></img>
+          <WeatherIcon icon={weatherData.icon}/>
         </div>
         <div className="row current-temp justify-content-center">
           <p id="curr-temp" className="temp">
