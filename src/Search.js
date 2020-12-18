@@ -54,7 +54,7 @@ export default function Search() {
             </button>
           </div>
         </nav>
-        <div class="weather-section">
+        <div className="weather-section">
           <div className="row">
             <CurrentWeather searchVal={city}/>
             {/* <Forecast searchCity={city}/> */}

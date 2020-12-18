@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loader from 'react-loader-spinner';
 import WeatherIcon from "./Icon.js";
+import CurrentDay from "./CurrentDay.js";
 
 
 export default function LocationWeather() {
@@ -19,6 +20,7 @@ export default function LocationWeather() {
       icon: response.data.weather[0].icon,
       city: response.data.name,
       feelsLike: Math.round(response.data.main.feels_like),
+      time: response.data.dt * 1000,
       // humid: response.data.main.humidity
     })
 
@@ -35,10 +37,10 @@ export default function LocationWeather() {
           <div id="curr-city" className="row city justify-content-center">
             {weatherData.city}
           </div>
-          {/* <div id="curr-date" className="row current-date justify-content-center">
-            Saturday, November 21
+          <div id="curr-date" className="row current-date justify-content-center">
+            <CurrentDay current={weatherData.time} />
           </div>
-          <div
+          {/* <div
             id="curr-state-country"
             className="row state-country justify-content-center"
           >
