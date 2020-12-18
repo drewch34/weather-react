@@ -55,10 +55,7 @@ export default function Search() {
           </div>
         </nav>
         <div className="weather-section">
-          <div className="row">
-            <CurrentWeather searchVal={city}/>
-            {/* <Forecast searchCity={city}/> */}
-          </div>
+          <CurrentWeather searchVal={city}/>
         </div>
       </div>
     );

@@ -25,12 +25,12 @@ export default function Forecast(props) {
 
   if (weatherInfo.ready) {
     return (
-      <div className="col future">
-        <ForecastComp daily={weatherInfo.eachDay[0]} />
+      <div className="future">
         <ForecastComp daily={weatherInfo.eachDay[1]} />
         <ForecastComp daily={weatherInfo.eachDay[2]} />
         <ForecastComp daily={weatherInfo.eachDay[3]} />
         <ForecastComp daily={weatherInfo.eachDay[4]} />
+        <ForecastComp daily={weatherInfo.eachDay[5]} />
       </div>
     );
 

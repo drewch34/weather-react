@@ -34,7 +34,7 @@ export default function CurrentWeather(props) {
   if (props.searchVal && weatherData.ready) {
 
     return (
-      <div>
+      <div className="row">
         <div className="col current border-right CurrentCity">
           <div id="curr-city" className="row city justify-content-center">
             {weatherData.city}
