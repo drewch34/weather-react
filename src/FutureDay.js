@@ -1,4 +1,5 @@
 import React from "react";
+import "./FutureDay.css";
 
 export default function FutureDay(props) {
   // console.log(props.day);
@@ -19,7 +20,7 @@ export default function FutureDay(props) {
   // console.log(day);
 
   return (
-    <div>
+    <div className="day">
       <p>{day}</p>
     </div>
   )
