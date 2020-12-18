@@ -4,6 +4,7 @@ import axios from "axios";
 import Loader from 'react-loader-spinner';
 import WeatherIcon from "./Icon.js";
 import CurrentDay from "./CurrentDay.js";
+import LocationForecast from "./LocationForecast.js";
 
 
 export default function LocationWeather() {
@@ -32,7 +33,7 @@ export default function LocationWeather() {
 
   if (weatherData.ready) {
     return (
-      <div>
+      <div className="row">
         <div className="col current border-right CurrentCity">
           <div id="curr-city" className="row city justify-content-center">
             {weatherData.city}
@@ -77,6 +78,9 @@ export default function LocationWeather() {
           <div className="row sunset justify-content-center">
             <p id="curr-sunset">The sunset in your time is 17:29</p> */}
           {/* </div> */}
+        </div>
+        <div className="col future">
+             <LocationForecast />
         </div>
 
       </div>

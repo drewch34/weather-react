@@ -20,7 +20,7 @@ export default function LocationForecast(props) {
 
   if (weatherInfo.ready) {
     return (
-      <div className="col future">
+      <div >
         <ForecastComp daily={weatherInfo.eachDay[1]} />
         <ForecastComp daily={weatherInfo.eachDay[2]} />
         <ForecastComp daily={weatherInfo.eachDay[3]} />
