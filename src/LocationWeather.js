@@ -22,6 +22,7 @@ export default function LocationWeather(props) {
       city: response.data.name,
       feelsLike: Math.round(response.data.main.feels_like),
       time: response.data.dt * 1000,
+      country: response.data.sys.country,
       // humid: response.data.main.humidity
     })
 
@@ -42,12 +43,12 @@ export default function LocationWeather(props) {
             <div id="curr-date" className="row current-date justify-content-center">
               <CurrentDay current={weatherData.time} />
             </div>
-            {/* <div
+            <div
               id="curr-state-country"
               className="row state-country justify-content-center"
             >
-              USA
-            </div> */}
+              {weatherData.country}
+            </div>
             <div className="row current-emoji justify-content-center">
               <WeatherIcon icon={weatherData.icon}/>
             </div>

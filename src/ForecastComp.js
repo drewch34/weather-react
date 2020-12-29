@@ -5,8 +5,6 @@ import FutureDay from "./FutureDay.js";
 
 export default function ForecastComp(props) {
 
-  console.log(props);
-
   let high = Math.round(props.daily.temp.max);
   let low = Math.round(props.daily.temp.min);
 

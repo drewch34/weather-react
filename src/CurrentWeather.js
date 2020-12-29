@@ -11,7 +11,7 @@ export default function CurrentWeather(props) {
   const [weatherData, setWeatherData] = useState( {ready: false});
 
   function displayInfo(response) {
-    console.log(response);
+    // console.log(response);
     setWeatherData ({
       ready: true,
       temp: Math.round(response.data.main.temp),
@@ -23,7 +23,8 @@ export default function CurrentWeather(props) {
       lat: response.data.coord.lat,
       long: response.data.coord.lon,
       // place: `lat=${this.lat}&lon=${this.long}`,
-      time: response.data.dt * 1000
+      time: response.data.dt * 1000,
+      country: response.data.sys.country,
       // humid: response.data.main.humidity
     })
 
@@ -43,12 +44,12 @@ export default function CurrentWeather(props) {
             <div id="curr-date" className="row current-date justify-content-center">
               <CurrentDay current={weatherData.time} />
             </div>
-            {/* <div
+            <div
               id="curr-state-country"
               className="row state-country justify-content-center"
             >
-              USA
-            </div> */}
+              {weatherData.country}
+            </div>
             <div className="row current-emoji justify-content-center">
               <WeatherIcon icon={weatherData.icon}/>
             </div>
