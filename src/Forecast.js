@@ -10,6 +10,7 @@ export default function Forecast(props) {
   let key = `f42932205cbcb577e1d9c675e3aae5ef`;
   let place = props.place;
   // console.log(place);
+  console.log(props);
 
   const [weatherInfo, setWeatherInfo] = useState({ready: false});
 
@@ -26,11 +27,11 @@ export default function Forecast(props) {
   if (weatherInfo.ready) {
     return (
       <div className="future">
-        <ForecastComp daily={weatherInfo.eachDay[1]} />
-        <ForecastComp daily={weatherInfo.eachDay[2]} />
-        <ForecastComp daily={weatherInfo.eachDay[3]} />
-        <ForecastComp daily={weatherInfo.eachDay[4]} />
-        <ForecastComp daily={weatherInfo.eachDay[5]} />
+        <ForecastComp daily={weatherInfo.eachDay[1]} unit={props.unit} tempMath={props.tempMath}/>
+        <ForecastComp daily={weatherInfo.eachDay[2]} unit={props.unit} tempMath={props.tempMath}/>
+        <ForecastComp daily={weatherInfo.eachDay[3]} unit={props.unit} tempMath={props.tempMath}/>
+        <ForecastComp daily={weatherInfo.eachDay[4]} unit={props.unit} tempMath={props.tempMath}/>
+        <ForecastComp daily={weatherInfo.eachDay[5]} unit={props.unit} tempMath={props.tempMath}/>
       </div>
     );
 

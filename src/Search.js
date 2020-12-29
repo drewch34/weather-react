@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CurrentWeather from "./CurrentWeather";
 import LocationWeather from "./LocationWeather";
-import LocationForecast from "./LocationForecast.js";
+// import LocationForecast from "./LocationForecast.js";
 // import Forecast from "./Forecast";
 import "./Search.css";
 
@@ -9,6 +9,7 @@ export default function Search() {
   const [searched, setValue] = useState("");
   const [city, setCity] = useState("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [tempUnits, setTempUnits] = useState('c-button');
 
   function handleChange(event) {
     event.persist();
@@ -22,6 +23,18 @@ export default function Search() {
     event.preventDefault();
     setCity(searched);
     setHasSubmitted(true);
+  }
+
+  function handleUnits(event) {
+    event.persist();
+    event.preventDefault();
+    let unit = event.target.id;
+    setTempUnits(unit);
+  }
+
+  function changeUnits(temp) {
+    let newTemp = Math.round((temp * 1.8) + 32);
+    return newTemp;
   }
 
   if (hasSubmitted) {
@@ -46,16 +59,21 @@ export default function Search() {
               id="f-button"
               type="button"
               className="btn btn-secondary farenheit"
+              onClick={handleUnits}
             >
               F°
             </button>
-            <button id="c-button" type="button" className="btn btn-secondary celcius">
+            <button
+              id="c-button"
+              type="button"
+              className="btn btn-secondary celcius"
+              onClick={handleUnits}>
               C°
             </button>
           </div>
         </nav>
-        <div className="row weather-section">
-          <CurrentWeather searchVal={city}/>
+        <div >
+          <CurrentWeather searchVal={city} unit={tempUnits} tempMath={changeUnits}/>
         </div>
       </div>
     );
@@ -83,19 +101,21 @@ export default function Search() {
               id="f-button"
               type="button"
               className="btn btn-secondary farenheit"
+              onClick={handleUnits}
             >
               F°
             </button>
-            <button id="c-button" type="button" className="btn btn-secondary celcius">
+            <button id="c-button"
+              type="button"
+              className="btn btn-secondary celcius"
+              onClick={handleUnits}
+              >
               C°
             </button>
           </div>
         </nav>
-        <div class="row weather-section">
-
-            <LocationWeather />
-
-
+        <div >
+            <LocationWeather unit={tempUnits} tempMath={changeUnits}/>
         </div>
       </div>
     );
