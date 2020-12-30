@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import CurrentWeather from "./CurrentWeather";
 import LocationWeather from "./LocationWeather";
-// import LocationForecast from "./LocationForecast.js";
-// import Forecast from "./Forecast";
 import "./Search.css";
+
+//IMPROVEMENT SUGGESTIONS
+//  -get search back to default of false (can't search multiple cities)
+//  -add ability to search by city and state
+//  -sunrise/sunset
+//  -fix CSS page issues
+
 
 export default function Search() {
   const [searched, setValue] = useState("");
@@ -14,7 +19,6 @@ export default function Search() {
   function handleChange(event) {
     event.persist();
     event.preventDefault();
-    // console.log(event.target.value);
     setValue(event.target.value);
   }
 

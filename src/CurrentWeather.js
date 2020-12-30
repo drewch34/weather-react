@@ -11,7 +11,6 @@ export default function CurrentWeather(props) {
   const [weatherData, setWeatherData] = useState( {ready: false});
 
   function displayInfo(response) {
-    // console.log(response);
     setWeatherData ({
       ready: true,
       temp: Math.round(response.data.main.temp),
@@ -22,10 +21,8 @@ export default function CurrentWeather(props) {
       feelsLike: Math.round(response.data.main.feels_like),
       lat: response.data.coord.lat,
       long: response.data.coord.lon,
-      // place: `lat=${this.lat}&lon=${this.long}`,
       time: response.data.dt * 1000,
       country: response.data.sys.country,
-      // humid: response.data.main.humidity
     })
 
   }

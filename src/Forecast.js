@@ -1,4 +1,3 @@
-// import Search from "./Search";
 import "./Forecast.css";
 import React, { useState } from "react";
 import axios from "axios";
@@ -9,13 +8,10 @@ import ForecastComp from "./ForecastComp";
 export default function Forecast(props) {
   let key = `f42932205cbcb577e1d9c675e3aae5ef`;
   let place = props.place;
-  // console.log(place);
-  console.log(props);
 
   const [weatherInfo, setWeatherInfo] = useState({ready: false});
 
   function getInfo(response) {
-    // console.log(response);
 
     setWeatherInfo({
       ready: true,

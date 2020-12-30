@@ -10,7 +10,6 @@ export default function LocationForecast(props) {
   const [weatherInfo, setWeatherInfo] = useState({ready: false});
 
   function getInfo(response) {
-    // console.log(response);
 
     setWeatherInfo({
       ready: true,
